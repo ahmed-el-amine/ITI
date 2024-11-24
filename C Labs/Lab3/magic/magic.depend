@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1731944932 source:m:\iti\c\labs\lab3\magic\main.c
+	<windows.h>
+	<unistd.h>
+	<stdio.h>
+

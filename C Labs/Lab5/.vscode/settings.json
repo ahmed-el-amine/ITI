@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.ejs": "html",
+    "*.xaml": "xaml",
+    "defines.h": "c",
+    "menu.h": "c"
+  }
+}

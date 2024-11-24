@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "*.ejs": "html",
+    "*.xaml": "xaml",
+    "string_strcmp.h": "c",
+    "string_view": "c",
+    "string": "c",
+    "validation.h": "c",
+    "stdio.h": "c"
+  }
+}

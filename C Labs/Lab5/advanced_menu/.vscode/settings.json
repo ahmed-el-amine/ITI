@@ -1,0 +1,15 @@
+{
+  "files.associations": {
+    "*.ejs": "html",
+    "*.xaml": "xaml",
+    "stdio.h": "c",
+    "menu.h": "c",
+    "handleinputs.h": "c",
+    "menuoperations.h": "c",
+    "dialogmessages.h": "c",
+    "menu.c": "cpp",
+    "defines.h": "c",
+    "employee.h": "c",
+    "typeinfo": "c"
+  }
+}

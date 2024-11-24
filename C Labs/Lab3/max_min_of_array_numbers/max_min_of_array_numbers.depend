@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1731950489 source:m:\iti\c\labs\lab3\max_min_of_array_numbers\main.c
+	<stdio.h>
+	<stdlib.h>
+

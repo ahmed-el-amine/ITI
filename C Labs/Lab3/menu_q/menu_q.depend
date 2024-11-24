@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1732018427 source:m:\iti\c\labs\lab3\menu_q\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+
