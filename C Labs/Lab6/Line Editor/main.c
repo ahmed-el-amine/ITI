@@ -97,6 +97,7 @@ int main()
                     else if (isInsertMode)
                     {
                         lineData[curentPosation] = input;
+                        curentPosation++;
                     }
                 }
             break;
