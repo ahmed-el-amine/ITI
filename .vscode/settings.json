@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.ejs": "html",
+    "*.xaml": "xaml",
+    "stdarg.h": "c"
+  }
+}
