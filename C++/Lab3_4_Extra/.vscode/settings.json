@@ -1,0 +1,15 @@
+{
+  "files.associations": {
+    "*.ejs": "html",
+    "*.xaml": "xaml",
+    "algorithm": "cpp",
+    "iostream": "cpp",
+    "new": "cpp",
+    "array": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "ostream": "cpp",
+    "stdexcept": "cpp",
+    "iosfwd": "cpp"
+  }
+}

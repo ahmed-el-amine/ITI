@@ -1,9 +1,14 @@
+#ifndef MENU_C
+#define MENU_C
+
+
 #include <iostream>
 #include <cstring>
 #include "../stack/stack.cpp"
 #include "../../lib/defines.h"
 #include "../../lib/consoleColor.cpp"
-#include "../../lib/handleInputs.h"
+#include "../../lib/handleInputs.cpp"
+
 
 using namespace std;
 
@@ -27,7 +32,8 @@ private:
 
 public:
     MenuItem() {};
-    MenuItem(const char *text, MenuItemActions action = MenuItemActions::OP_DO_NOTING)
+    // MenuItem(const char *text, MenuItemActions action = MenuItemActions::OP_DO_NOTING)
+    MenuItem(const char text[], MenuItemActions action = MenuItemActions::OP_DO_NOTING)
     {
         this->menuText = new char[strlen(text) + 1];
         this->action = action;
@@ -61,6 +67,14 @@ private:
     Stack *stack;
 
 public:
+    Menu(int MenuSize)
+    {
+        this->menuItems = new MenuItem[MenuSize];
+        this->MenuSize = MenuSize;
+        this->MenuIndex = -1;
+        this->FocusItemIndex = 1;
+        this->IsPressEnter = 0;
+    }
     Menu(int MenuSize, Stack &stack)
     {
         this->menuItems = new MenuItem[MenuSize];
@@ -146,7 +160,7 @@ private:
 
         while (isRunning)
         {
-            char keyChar = getKey_Char();
+            char keyChar = Input::getKey();
 
             switch (keyChar)
             {
@@ -246,6 +260,10 @@ private:
         case MenuItem::OP_DISPLAY_EMPLOYESS:
             this->stack->display();
             break;
+        
+        case MenuItem::OP_SHOW_EXIT_CONFIRM:
+            // dialogMessageExitApp_Void();
+            break;
         case MenuItem::OP_EXIT:
             clearConsole();
             setTextColor(TC_LIGHTRED);
@@ -258,3 +276,6 @@ private:
         }
     }
 };
+
+
+#endif
