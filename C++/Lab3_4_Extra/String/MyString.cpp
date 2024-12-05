@@ -56,6 +56,11 @@ public:
         return *this;
     }
 
+    bool operator==(MyString &c)
+    {
+        return strcmp(this->getText(), c.getText()) == 0 ? true : false;
+    }
+
     ~MyString()
     {
         delete[] str;

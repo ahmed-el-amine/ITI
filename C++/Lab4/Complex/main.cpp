@@ -153,12 +153,11 @@ int main()
 
     Complex c1(15, 5);
     Complex c2(10, 2);
-
     // ----------------------
     c1.display();
     c1 += c2;
     c1.display();
-    // cout << ((c1 == c2) ? "true" : "false");
+    cout << ((c1 == c2) ? "true" : "false");
 
     // ----------------------
     // cout << ((c1 == c2) ? "true" : "false");

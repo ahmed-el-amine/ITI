@@ -19,6 +19,29 @@ private:
     }
 
 public:
+    static int IntCount;
+    MyStack()
+    {
+        MyStack::IntCount++;
+        cout << "Created " << MyStack::IntCount << endl;
+    }
+
+    MyStack(const MyStack &old)
+    {
+        delete[] this->data;
+
+        this->index = old.index;
+        this->data = new int[this->index + 1];
+
+        for (int i = 0; i <= this->index; i++)
+        {
+            this->data[i] = old.data[i];
+        }
+
+        MyStack::IntCount++;
+        cout << "Created " << MyStack::IntCount << endl;
+    }
+
     /// @brief add value to the end of the list
     /// @param value
     void Push(int value)
@@ -183,7 +206,7 @@ public:
         this->Push(value);
     }
 
-    bool operator==(MyStack c)
+    bool operator==(MyStack &c)
     {
         if (this->Count() != c.Count())
             return false;
@@ -197,18 +220,30 @@ public:
         return true;
     }
 
-    bool operator>(MyStack c)
+    bool operator>(MyStack &c)
     {
         return this->Count() > c.Count();
     }
 
-    bool operator>=(MyStack c)
+    bool operator>=(MyStack &c)
     {
         return this->Count() >= c.Count();
     }
 
     ~MyStack()
     {
+        MyStack::IntCount--;
+        cout << "Deleted " << MyStack::IntCount << endl;
         delete[] data;
     }
 };
+
+int MyStack::IntCount = 0;
+
+void callByValue(MyStack s)
+{
+}
+
+void callByRef(MyStack &s)
+{
+}

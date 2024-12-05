@@ -7,9 +7,17 @@ int main()
 {
 
     MyStack a;
+    MyStack b;
 
     a.Push(1);
-    a.Push(2);
+    b.Push(2);
+
+    a == b;
+    a > b;
+    a >= b;
+
+    callByValue(a);
+    callByRef(a);
 
     // cout << a.ElementAt(0);
 
@@ -53,13 +61,14 @@ int main()
     // a.Push(7);
     // a.Pop();
     // a.Clear();
-    cout
-        << "\n----------------------\n";
-    cout << "Length " << a.Count() << endl;
-    for (int i = 0; i < a.Count(); i++)
-    {
-        cout << a.getData()[i] << endl;
-    }
+
+    // cout
+    //     << "\n----------------------\n";
+    // cout << "Length " << a.Count() << endl;
+    // for (int i = 0; i < a.Count(); i++)
+    // {
+    //     cout << a.getData()[i] << endl;
+    // }
 
     // int *i = new int[1];
 
