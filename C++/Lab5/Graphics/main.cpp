@@ -23,14 +23,27 @@ int main()
 
     Picture myPic;
 
-    Circle cArr[3] = {Circle(50, 50, 50), Circle(200, 100, 100), Circle(420, 50, 30)};
+    Circle c1(50, 50, 50);
+    Circle c2(200, 100, 100);
+    Circle c3(420, 50, 30);
+    c1.setColor(YELLOW_NEW);
+    c2.setColor(YELLOW_NEW);
+    c3.setColor(YELLOW_NEW);
+    Circle cArr[3] = {c1, c2, c3};
 
-    Rect rArr[2] = {Rect(30, 40, 170, 100), Rect(420, 50, 500, 300)};
+    Rect r1(30, 40, 170, 100);
+    Rect r2(420, 50, 500, 300);
+    r1.setColor(CYAN_NEW);
+    r2.setColor(CYAN_NEW);
+    Rect rArr[2] = {r1, r2};
 
     Line l1(420, 50, 300, 300);
     Line l2(40, 500, 500, 400);
 
-    Line lArr[2] = {Line(420, 50, 300, 300), Line(40, 500, 500, 400)};
+    l1.setColor(GREEN_NEW);
+    l2.setColor(GREEN_NEW);
+
+    Line lArr[2] = {l1, l2};
 
     myPic.setCircles(3, cArr);
     myPic.setRects(2, rArr);
