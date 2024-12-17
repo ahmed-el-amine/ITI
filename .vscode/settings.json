@@ -1,5 +1,6 @@
 {
   "files.associations": {
+    "*.dbclient-js": "javascript",
     "*.ejs": "html",
     "*.xaml": "xaml",
     "stdarg.h": "c",
@@ -50,6 +51,8 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "cinttypes": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "variant": "cpp",
+    "any": "cpp"
   }
 }
