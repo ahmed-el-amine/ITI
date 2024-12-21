@@ -51,6 +51,24 @@ public:
         return data;
     }
 
+    int GetFront()
+    {
+        if (front == NULL)
+        {
+            throw "Queue is Empty";
+        }
+        return front->data;
+    }
+
+    int GetRear()
+    {
+        if (rear == NULL)
+        {
+            throw "Queue is Empty";
+        }
+        return rear->data;
+    }
+
     void Display()
     {
         NodeQueue *current = front;
