@@ -45,12 +45,12 @@ public class Complex<T extends Double> {
     public Complex<T> addition(Complex<T> other) {
         Double newReal = this.real + other.real;
         Double newImg = this.img + other.img;
-        return new Complex<>((T) newImg, (T) newReal);
+        return new Complex<>((T) newReal, (T) newImg);
     }
 
     public Complex<T> subtract(Complex<T> other) {
         Double newReal = this.real - other.real;
         Double newImg = this.img - other.img;
-        return new Complex<>((T) newImg, (T) newReal);
+        return new Complex<>((T) newReal, (T) newImg);
     }
 }
