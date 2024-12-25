@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 
@@ -14,42 +15,34 @@ public class Exercise2 {
 
     public static void main(String[] args) {
         CountryDao countryDao = InMemoryWorldDao.getInstance();
-        
-        countryDao.getAllContinents().stream().forEach(continentName -> 
-        {
-            Map<String, City> e = countryDao.findCountriesByContinent(continentName).stream()
-            .filter(x -> x.getCities() != null && !x.getCities().isEmpty())
-            .collect(
-                Collectors.toMap(Country::getName, x -> x.getCities().stream()
-                .filter(country -> x.getCities() != null && !x.getCities().isEmpty())
-                .max(Comparator.comparingInt(City::getPopulation)).orElse(null)));
-        
-                
-            e.forEach((country, city) -> {
-                System.out.println("Country: " + country + ", Highest-Populated City: " + city);
-             });
-             System.out.println("---------------------------------");
-        });
 
-        // Afric
-        // countryDao.getAllContinents().stream().forEach(continentName -> 
-        // {
-        //     // Egypt
-        //     countryDao.findCountriesByContinent(continentName).stream().forEach(countrie -> {
-                
-        //         // Cairo
-        //         Optional<City> city = countrie.getCities().stream().max(Comparator.comparingInt(City::getPopulation));
-        //         if (!city.isEmpty()) {
-        //            System.out.println("For countries: " + countrie.getName() + " Most population city is: " + city.get().getName() + " With : " + city.get().getPopulation() + " Population");
-        //         }
+        // Continents[Africa, Asia, ...]
+        List<City> listOfCities = countryDao.getAllContinents().stream()
+            // Continent(Africa) => Countries[Egypt, Sudan]
+            .map(continentName -> countryDao.findCountriesByContinent(continentName).stream()
+            // Continent(Africa) => Countries(Egypt) => Cities[Cairo, Giza, ...]
+            .map(country -> country.getCities())
+            // Continent(Africa) => Countries(Egypt) => Cities[Cairo, Giza, ...] => Citie (get max Population Citie in Cities[])
+            // This Will return An Array Has Only One Element The Max Citie Population
+            .map(cities -> cities.stream().max(Comparator.comparingInt(City::getPopulation)))
+            // Last max Returns Optional<City> we need to make soure that element isPresent using filter
+            // this will return elements if not equal to null 
+            .filter(Optional::isPresent)
+            // After Filter We Will have an array of One Element That is Max Citie Population
+            .map(city -> city.get()))
 
-        //     });
-        // });
+        // Returns List<List<Cities>> -> List<Cities>
+        .map(streamCities -> streamCities.collect(Collectors.toList()))
+        // Get Max  Population citie of Continents
+        .map(cities -> cities.stream().max(Comparator.comparingInt(City::getPopulation)))
+        // Last max Returns Optional<City> we need to make soure that element isPresent using filter
+        // this will return elements if not equal to null 
+        .filter(Optional::isPresent)
+        .map(city -> city.get())
+        // return all resutl as list
+        .collect(Collectors.toList());
 
-            // countryDao.getAllContinents().stream().forEach(continent -> {
-                
-            // });
-
+        listOfCities.forEach(x -> System.out.println(x));
     }
 
 }

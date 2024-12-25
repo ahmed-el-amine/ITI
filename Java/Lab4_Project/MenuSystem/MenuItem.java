@@ -4,22 +4,22 @@ import java.util.UUID;
 
 public class MenuItem {
     private final String ID = UUID.randomUUID().toString();
-    private String title;
+    private String itemText;
     private Runnable action = null;
 
-    public MenuItem(String title)
+    public MenuItem(String itemText)
     {
-        this.title = title;
+        this.itemText = itemText;
     }
 
     public MenuItem(String title, Runnable action)
     {
-        this.title = title;
+        this.itemText = title;
         this.action = action;
     }
 
-    public String getTitle() {
-        return title;
+    public String getItemText() {
+        return itemText;
     }
 
     public String getID() {
@@ -28,9 +28,8 @@ public class MenuItem {
 
     public void startAction()
     {
-        if (this.action != null) {
-            this.action.run();
-        }
+        if (!this.hasAction()) return;
+        this.action.run();
     }
 
     public void setAction(Runnable action)

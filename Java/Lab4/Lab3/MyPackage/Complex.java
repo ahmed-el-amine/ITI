@@ -1,6 +1,6 @@
 package MyPackage;
 
-public class Complex<T extends Double> {
+public class Complex<T extends Number> {
     private T real;
     private T img;
 
@@ -42,15 +42,15 @@ public class Complex<T extends Double> {
             System.out.println(this.img + "j");
     }
 
-    public Complex<T> addition(Complex<T> other) {
-        Double newReal = this.real + other.real;
-        Double newImg = this.img + other.img;
-        return new Complex<>((T) newReal, (T) newImg);
+    public Complex<Double> addition(Complex<T> other) {
+        double newReal = (double)this.real + (double)other.real;
+        Double newImg =  (double)this.img +  (double)other.img;
+        return new Complex<>(newReal, newImg);
     }
 
-    public Complex<T> subtract(Complex<T> other) {
-        Double newReal = this.real - other.real;
-        Double newImg = this.img - other.img;
-        return new Complex<>((T) newReal, (T) newImg);
+    public Complex<Double> subtract(Complex<T> other) {
+        Double newReal = (double)this.real -(double) other.real;
+        Double newImg = (double)this.img -(double) other.img;
+        return new Complex<>( newReal,  newImg);
     }
 }

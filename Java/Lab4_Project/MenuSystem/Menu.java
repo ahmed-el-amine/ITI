@@ -1,10 +1,11 @@
 package MenuSystem;
-import Console.*;
-import LibraryManagementSystem.Library.LibraryItem;
 import Validation.Validation;
 
+
+import java.io.Console;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import ConsoleLib.*;
 
 public class Menu {
     private String menuTitle = null;
@@ -15,12 +16,12 @@ public class Menu {
         this.menuTitle = menuTitle;
     }
 
-    public void AddMenuItem(MenuItem item)
+    public void addMenuItem(MenuItem item)
     {
         menuItems.add(item);
     }
 
-    public void ShowMenu()
+    public void showMenu()
     {
         this.PrintMenu();
         this.CatchKeyboard();
@@ -29,7 +30,7 @@ public class Menu {
     private void PrintMenu()
     {
         // First Clear Console
-        Console.ClearConsole();
+        ConsoleLib.Console.ClearConsole();
 
         System.out.println(ConsoleColors.CYAN_UNDERLINED + this.menuTitle + ConsoleColors.RESET);
         System.out.println();
@@ -37,29 +38,33 @@ public class Menu {
         for (int i = 0; i < menuItems.size(); i++) {
             MenuItem menuItem = menuItems.get(i);
             System.out.print(ConsoleColors.CYAN + (i + 1) + ConsoleColors.RESET);
-            System.out.println("- " + menuItem.getTitle());
+            System.out.println("- " + menuItem.getItemText());
         }
+
+        System.out.print(ConsoleColors.CYAN + "q" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.YELLOW + "- Go Back/Exit" + ConsoleColors.RESET);
 
         System.out.println();
 
-        System.out.println(ConsoleColors.YELLOW + "(Q/q) For Exit");
+        // System.out.println(ConsoleColors.YELLOW + "(Q/q) For Back/Exit");
         System.out.print(ConsoleColors.CYAN);
-        System.out.print("Please Select Option From [1] To ["+ menuItems.size() +"] : ");
+        // System.out.print("Please Select Option From [1] To ["+ menuItems.size() +"] : ");
+        System.out.print("Please Select Option : ");
         System.out.print(ConsoleColors.RESET);
     }
 
     private void CatchKeyboard()
     {
-        Scanner scanner = new Scanner(System.in);
+        Console console = System.console();
 
         boolean isRunning = true;
-        while (isRunning) 
+        try 
         {
-            try 
+            while (isRunning) 
             {
                 System.out.print(ConsoleColors.BLUE_BOLD);
                 
-                String option = scanner.nextLine();
+                String option = console.readLine();
 
                 System.out.print(ConsoleColors.RESET);
 
@@ -80,20 +85,17 @@ public class Menu {
                     {
                         MenuItem selectedItem = this.menuItems.get(optionAsInt - 1);
                         
-                        if (selectedItem.getAction() == null) return;
-                        
                         selectedItem.startAction();
+
                         this.PrintMenu();
                     }
                 }    
             } 
-            catch (Exception e)
-            {
-                System.out.println(ConsoleColors.RED + "An error occurred: " + e.getMessage() + ConsoleColors.RESET);
-            }
         }
-
-        scanner.close();
+        catch (Exception e)
+        {
+            System.out.println(ConsoleColors.RED + "An error occurred: " + e.getMessage() + ConsoleColors.RESET);
+        }
     }
 
    
