@@ -12,10 +12,14 @@ public class MenuItem {
         this.itemText = itemText;
     }
 
-    public MenuItem(String title, Runnable action)
+    public MenuItem(String itemText, Runnable action)
     {
-        this.itemText = title;
+        this.itemText = itemText;
         this.action = action;
+    }
+
+    public void setItemText(String itemText) {
+        this.itemText = itemText;
     }
 
     public String getItemText() {

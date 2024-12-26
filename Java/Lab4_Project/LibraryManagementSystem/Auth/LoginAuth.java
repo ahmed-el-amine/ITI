@@ -6,7 +6,7 @@ public class LoginAuth {
 
     public static boolean Login(String username, String password)
     {
-        LoginAuth.Loading();
+        LoginAuth.loading();
         if (LoginAuth.username.equals(username) && LoginAuth.password.equals(password)) 
         {
             return Auth.IsAuth = true;
@@ -14,7 +14,7 @@ public class LoginAuth {
         return Auth.IsAuth = false;
     }
 
-    private static void Loading()
+    private static void loading()
     {
         try 
         {

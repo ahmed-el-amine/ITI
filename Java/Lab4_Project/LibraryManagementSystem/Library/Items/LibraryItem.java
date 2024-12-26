@@ -1,29 +1,25 @@
-package LibraryManagementSystem.Library;
+package LibraryManagementSystem.Library.Items;
 
 import java.io.Console;
 
 import ConsoleLib.ConsoleColors;
 import LibraryManagementSystem.Constants.Constants;
 import LibraryManagementSystem.Exceptions.ItemAlreadyExists;
+import LibraryManagementSystem.Library.ItemsType;
+import LibraryManagementSystem.Library.LibraryEntity;
 import MenuSystem.Menu;
 import MenuSystem.MenuItem;
 import MessageBox.MessageBox;
 import MessageBox.MessageBoxType;
-import Validation.Validation;
 
-public abstract class LibraryItem {
-    private int id;
-    private String title;
-    public final ItemsType ItemType = ItemsType.Book;
+public abstract class LibraryItem extends LibraryEntity {
+    protected String title;
+    private ItemsType ItemType;
 
-    public LibraryItem(int id, String title)
+    public LibraryItem(String title, ItemsType ItemType)
     {
-        this.id = id;
         this.title = title;
-    }
-
-    public int getId() {
-        return id;
+        this.ItemType = ItemType;
     }
 
     public void setTitle(String title) {
@@ -32,6 +28,10 @@ public abstract class LibraryItem {
 
     public String getTitle() {
         return title;
+    }
+
+    public ItemsType getItemType() {
+        return ItemType;
     }
 
     public void getItemDetails()
@@ -65,23 +65,6 @@ public abstract class LibraryItem {
 
             while (true) 
             {
-                String id = null;
-
-                while (!Validation.isValidInt(id) || Integer.parseInt(id) <= 0) 
-                {
-                    System.out.print(ConsoleColors.CYAN + "Please Enter ID For The " + itemType.toString() + " : " + ConsoleColors.BLUE);
-                    id = console.readLine();
-
-                    if (!Validation.isValidInt(id) || Integer.parseInt(id) <= 0) {
-                        System.out.println(ConsoleColors.RED + "Wring ID Format Please Enter Valid Number Start From 1"+ ConsoleColors.RESET);
-                    }
-                    else if (Constants.library.isIdExists(Integer.parseInt(id))) 
-                    {
-                        System.out.println(ConsoleColors.RED + "This ID: " + id + " Alrady Exist Please Select Another ID" + ConsoleColors.RESET);
-                        id  = "";                            
-                    }
-                }
-
                 String title = "";
 
                 while (title.length() <= 0) {
@@ -98,14 +81,14 @@ public abstract class LibraryItem {
                 {
                     switch (itemType) {
                         case Book:
-                            Constants.library.add(new Book(Integer.parseInt(id), title));
+                            Constants.library.add(new Book(title));
                             break;
                         case Magazine:
-                            Constants.library.add(new Magazine(Integer.parseInt(id), title));
+                            Constants.library.add(new Magazine(title));
                             break;
                     }
 
-                    MessageBox.showMessage("You Have Created A New Item", MessageBoxType.Error);
+                    MessageBox.showMessage("You Have Created A New Item", MessageBoxType.Successful);
                                  
                     System.out.println("Press Enter To Go Back");
                     console.readPassword();
@@ -125,14 +108,19 @@ public abstract class LibraryItem {
             Menu mainMenu = new Menu("Update/Display Library Items");
 
             Constants.library.getAllLibraryItems().forEach(x -> {
-                mainMenu.addMenuItem(new MenuItem("[" + x.ItemType.toString() + "] " + x.title, UpdateItemAction(x)));
+
+                MenuItem op = new MenuItem("[" + x.ItemType.toString() + "] " + x.title);
+
+                op.setAction(UpdateItemAction(x, op));
+
+                mainMenu.addMenuItem(op);
             });
 
             mainMenu.showMenu();
         };
     }
 
-    public static Runnable UpdateItemAction(LibraryItem libraryItem)
+    public static Runnable UpdateItemAction(LibraryItem libraryItem, MenuItem op)
     {
         return () -> {
             ConsoleLib.Console.ClearConsole();
@@ -155,9 +143,10 @@ public abstract class LibraryItem {
                 }
 
                 libraryItem.setTitle(title);
+                // Update Option title
+                op.setItemText(title);
 
                 MessageBox.showMessage("You Have Update The Title", MessageBoxType.Successful);
-                                 
                 System.out.println("Press Enter To Go Back");
                 
                 console.readPassword();

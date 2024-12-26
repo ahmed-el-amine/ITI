@@ -11,27 +11,32 @@ import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.maxBy;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 public class Exercise5 {
 
     public static void main(String[] args) {
         CountryDao countryDao = InMemoryWorldDao.getInstance();
         CityDao cityDao = InMemoryWorldDao.getInstance();
-
-        // 
+       
+        Optional<City> maxCapital = // 
         countryDao.findAllCountries().stream()
-        .map(country -> {
-            return country.getCities().stream().filter(city -> city.getId() == country.getCapital());
-        })
-        // .collect(Collectors.tom)
-        .forEach(x -> {
-            x.forEach(m -> {
-                System.out.println(m);
-            });
-        });
+       .flatMap(country -> {
+           return country.getCities().stream().filter(city -> city.getId() == country.getCapital()).findFirst().stream();
+       })
+       .max(Comparator.comparingInt(City::getPopulation));
+
+       System.out.println(maxCapital.isPresent() ? maxCapital.get() : "Cannot found any max country");
+
+       ////////////////////////////////////////////////
+        // Optional<City> maxCapital = countryDao.findAllCountries().stream()
+        // .flatMap(country -> {
+        //     return country.getCities().stream().filter(city -> city.getId() == country.getCapital()).findFirst().stream();
+        // })
+        // .max(Comparator.comparingInt(City::getPopulation));
+
+        // System.out.println(maxCapital.isPresent() ? maxCapital.get() : "Cannot found any max country");
         
-        ;
-       //write your answer here 
     }
 
 }

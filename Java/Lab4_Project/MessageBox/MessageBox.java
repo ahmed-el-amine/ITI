@@ -6,7 +6,7 @@ public class MessageBox {
     public static void showMessage(String message, MessageBoxType messageType)
     {
         System.out.println(ConsoleColors.RESET);
-        System.out.print("-".repeat(message.length() / 2));
+        System.out.print("=".repeat(message.length() / 2));
 
         setColorByType(messageType, true);
 
@@ -14,14 +14,14 @@ public class MessageBox {
 
         System.out.print(ConsoleColors.RESET);
 
-        System.out.println("-".repeat(message.length() / 2 + (messageType.toString().length() / 2)));
+        System.out.println("=".repeat(message.length() / 2));
         System.err.print("  ");
 
         setColorByType(messageType, false);
         System.out.print(message + ConsoleColors.RESET);
 
         System.err.println("  ");
-        System.out.println("-".repeat(message.length() + (messageType.toString().length() / 2)));
+        System.out.println("=".repeat(message.length() + (messageType.toString().length())));
     }
 
     private static void setColorByType(MessageBoxType messageType, boolean asBackGround)

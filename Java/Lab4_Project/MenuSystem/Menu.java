@@ -21,6 +21,10 @@ public class Menu {
         menuItems.add(item);
     }
 
+    public void setMenuTitle(String menuTitle) {
+        this.menuTitle = menuTitle;
+    }
+
     public void showMenu()
     {
         this.PrintMenu();
