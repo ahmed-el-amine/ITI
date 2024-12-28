@@ -1,7 +1,6 @@
 package MyPackage;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MarqueeText extends JFrame implements Runnable {
     private String message;
@@ -38,7 +37,7 @@ public class MarqueeText extends JFrame implements Runnable {
 
             // Reset position when text moves out off screen to the left
             if (xPos < -(message.length() * 15)) {
-                xPos = WINDOW_WIDTH;
+                xPos = this.getWidth();
             }
 
             // Update label position

@@ -3,17 +3,14 @@ package ConsoleLib;
 import java.io.IOException;
 
 public class Console {
-    public static void clearConsole()
-    {
-        try 
-        {
+    public static void clearConsole() {
+        try {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
         }
 
-         try {
+        try {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
@@ -23,21 +20,15 @@ public class Console {
             e.printStackTrace();
         }
 
-        try
-        {
+        try {
             final String os = System.getProperty("os.name");
-            
-            if (os.contains("Windows"))
-            {
+
+            if (os.contains("Windows")) {
                 Runtime.getRuntime().exec("cls");
-            }
-            else
-            {
+            } else {
                 Runtime.getRuntime().exec("clear");
             }
-        }
-        catch (final Exception e)
-        {
+        } catch (final Exception e) {
         }
     }
 }
