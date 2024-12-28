@@ -1,0 +1,208 @@
+<!-- Q1: -->
+<!-- 
+    What is HTML?
+    HTML is Hypertext Markup Language
+    Its not a programming language its markup language that descripe the page content
+-->
+
+<!-- Q2: Making a basic HTML page: “Hello, world” with config:  -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Hello, world" />
+    <meta name="description" content="this is a website for iti lab 1" />
+    <link rel="shortcut icon" href="./src/images/favicon.ico" type="image/x-icon" />
+    <meta name="author" content="Ahmed El Amine" />
+    <title>Hello, world</title>
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <!-- Q3: Styling your text: using tags {bold , underline , delete text ,italic, mark} -->
+    <p><strong>Bold</strong> <u>underline</u> <del>delete</del> <i>italic</i> <mark>mark</mark></p>
+    <!-- Q4: Give me the difference between {[b , strong], [i,em], [s,del], [s-,ins]}  -->
+    <hr />
+    <p>
+      Strong Text Its Important for [accessibility] than b tag
+      <br />
+      b tag it use just for make text bold
+    </p>
+    <p>
+      The i and em tags in HTML both style text as italic, but they serve different purposes. The i tag is used for visual styling without semantic
+      meaning, while em conveys emphasis and adds semantic importance, improving accessibility and meaning in content.
+    </p>
+    <p>
+      [s] deprecated or irrelevant text just for visual <br />
+      [del] deleted text use it with accessibility
+    </p>
+    <p>
+      [s] deprecated or irrelevant text just for visual <br />
+      [ins] newly added or inserted text Highlighting the new text
+    </p>
+
+    <!-- Q5: Making a paragraph with title “this is paragraph” -->
+    <hr />
+    <p>this is paragraph</p>
+
+    <!-- Q6: Use break and line -->
+    <br />
+    <hr />
+
+    <!-- Q7: Making a list like this -->
+    <ol type="I">
+      <li>
+        List item 1
+
+        <ol type="a">
+          <li>Nested item 1.1</li>
+          <li>Nested item 1.2</li>
+        </ol>
+      </li>
+
+      <li>
+        List item 2
+
+        <ol type="1">
+          <li>Nested item 2.1</li>
+          <li>Nested item 2.2</li>
+          <ul style="list-style-type: circle">
+            <li>Nested item 2.2.1</li>
+            <li>
+              Nested item 2.2.2
+              <ul>
+                <li>Nested item 2.2.2.1</li>
+                <li>Nested item 2.2.2.2</li>
+              </ul>
+            </li>
+            <li>Nested item 2.2.3</li>
+          </ul>
+          <li>Nested item 2.3</li>
+        </ol>
+      </li>
+
+      <li>
+        List item 3
+        <ul>
+          <li>Nested item 3.1</li>
+          <li>Nested item 3.1</li>
+          <li>Nested item 3.1</li>
+        </ul>
+      </li>
+    </ol>
+
+    <!-- Q8: Making a table like this -->
+    <hr />
+    <table border="1" style="text-align: center">
+      <thead>
+        <tr>
+          <th rowspan="3">Day</th>
+          <th colspan="3">Seminar</th>
+        </tr>
+        <tr>
+          <th colspan="2">Schedule</th>
+          <th rowspan="2">Topic</th>
+        </tr>
+        <tr>
+          <th>Begin</th>
+          <th>End</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td rowspan="2">Monday</td>
+          <td rowspan="2">8:00 am</td>
+          <td rowspan="2">5:00 pm</td>
+          <td>Introduction to XML</td>
+        </tr>
+        <tr>
+          <td>Validity DTD and Realx NG</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">Tuesday</td>
+          <td>8:00 am</td>
+          <td>11:00 am</td>
+          <!-- I can use css and nested table to fix this rowspan 1/2 -->
+          <td rowspan="1" style="height: 45px">XPath</td>
+          <!-- or using nested table -->
+          <!-- <td rowspan="3">
+            <table border="1">
+              <tr>
+                <td>XPath</td>
+              </tr>
+              <tr>
+                <td>Transformations</td>
+              </tr>
+            </table>
+          </td> -->
+        </tr>
+        <tr>
+          <td>11:00 am</td>
+          <td>2:00 pm</td>
+          <td rowspan="2">XSL Transformations</td>
+        </tr>
+        <tr>
+          <td>2:00 pa</td>
+          <td>5:00 pm</td>
+        </tr>
+
+        <tr>
+          <td>Wednesday</td>
+          <td>8:00 am</td>
+          <td>12:00 pm</td>
+          <td rowspan="1">XSL Formatting Objects</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Q9: Creating links target in same page and another page -->
+    <hr />
+    <a title="This Open SenderPro On This Page" href="https://senderprov.com">Open Sender Pro Website At The Same Page</a>
+    <br />
+    <a title="This Open SenderPro On New Page" href="https://senderprov.com" target="_blank">Open Sender Pro Website At New Page</a>
+
+    <!-- Q10: Adding an image using url and relative path  -->
+    <hr />
+    <br />
+    <img
+      src="https://senderprov.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbg-download.ffc7b60f.png&w=828&q=100"
+      alt="this an image from online url"
+      width="400"
+      height="292"
+    />
+    <br />
+    <img src="./src/images/img.jpg" width="400" height="300" alt="this an image from my site" />
+
+    <!-- Q11: Making the image into a link -->
+    <a href="https://senderprov.com" target="_blank">
+      <figure>
+        <figcaption>Click This Image To Open Website</figcaption>
+        <img
+          src="https://senderprov.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbg-download.ffc7b60f.png&w=828&q=100"
+          alt="this an image from online url"
+          width="250"
+          height="192"
+        />
+      </figure>
+    </a>
+
+    <!-- Q12: Embedding a YouTube video using iframe  -->
+    <hr />
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/m6lrNBd8spc?si=ZekrBSv7EjfhaRj0"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+    <!-- Q13: Making the video and audio tags  -->
+    <hr />
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+    <audio src="https://listen.ourquraan.com/Maher_Al-Muaiqly/114.mp3" controls></audio>
+  </body>
+</html>
