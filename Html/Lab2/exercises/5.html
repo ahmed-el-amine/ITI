@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 5: Complex Form with CSS Selectors</title>
+    <link rel="stylesheet" href="../src/5.css" />
+  </head>
+  <body>
+    <form action="javascript:">
+      <h1>Feedback Form</h1>
+
+      <section class="personal-info">
+        <h2>Personal Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </section>
+
+      <section>
+        <h2>Feedback</h2>
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required />
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <label for="rating">Rating:</label>
+        <div class="rating-field">
+          <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
+          <span>5</span>
+        </div>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+          <option value="">Select a category</option>
+          <option value="general">General</option>
+          <option value="product">Product</option>
+          <option value="service">Service</option>
+          <option value="support">Support</option>
+        </select>
+
+        <div class="checkbox-group">
+          <p>Areas for improvement:</p>
+          <input type="checkbox" id="quality" name="improvement" value="quality" />
+          <label for="quality">Quality</label>
+          <input type="checkbox" id="speed" name="improvement" value="speed" />
+          <label for="speed">Speed</label>
+          <input type="checkbox" id="communication" name="improvement" value="communication" />
+          <label for="communication">Communication</label>
+        </div>
+      </section>
+
+      <button type="submit" id="submit-btn">Submit Feedback</button>
+    </form>
+
+    <script>
+      // Simple script to update the rating value display
+      const ratingInput = document.getElementById("rating");
+      const ratingDisplay = ratingInput.nextElementSibling;
+      ratingInput.addEventListener("input", () => {
+        ratingDisplay.textContent = ratingInput.value;
+      });
+    </script>
+  </body>
+</html>

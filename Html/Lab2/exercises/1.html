@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Form</title>
+  </head>
+  <body>
+    <form action="javascript:">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required value="ahmed" />
+      </div>
+
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+
+      <div>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required />
+      </div>
+
+      <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required value="010258258258258" />
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div>
+        <p>Gender:</p>
+        <input type="radio" id="male" name="gender" value="male" />
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">Female</label>
+      </div>
+
+      <div>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" />
+      </div>
+
+      <div>
+        <p>Do you like this lab:</p>
+        <input type="radio" id="likeYes" name="likeLab" value="yes" checked />
+        <label for="likeYes">Yes</label>
+        <input type="radio" id="likeNo" name="likeLab" value="no" />
+        <label for="likeNo">No</label>
+      </div>
+
+      <div>
+        <label for="rating">Rate our Session:</label>
+        <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
+      </div>
+
+      <div>
+        <label for="favoriteColor">Favorite Color:</label>
+        <select id="favoriteColor" name="favoriteColor">
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+          <option value="purple">Purple</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="feedback">Feedback:</label>
+        <textarea id="feedback" name="feedback"></textarea>
+      </div>
+
+      <div>
+        <label for="resume">Upload Resume:</label>
+        <!-- to accept only pdf and doc for cvs -->
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+      </div>
+
+      <div>
+        <p>Select your favorite language:</p>
+        <input type="checkbox" id="javascript" name="favLanguage" value="javascript" />
+        <label for="javascript">JavaScript</label>
+        <input type="checkbox" id="python" name="favLanguage" value="python" />
+        <label for="python">Python</label>
+        <input type="checkbox" id="java" name="favLanguage" value="java" />
+        <label for="java">Java</label>
+        <input type="checkbox" id="csharp" name="favLanguage" value="csharp" />
+        <label for="csharp">C#</label>
+      </div>
+
+      <input type="hidden" name="hiddenField" value="mySecToken" />
+
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+</html>

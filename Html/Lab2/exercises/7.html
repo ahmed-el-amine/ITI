@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 7: Nested Semantic Tags with CSS Properties</title>
+    <link rel="stylesheet" href="../src/7.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Blog Post Title</h1>
+      <p>This is the main content of the blog post...</p>
+
+      <section class="comment-section">
+        <h2>Comments</h2>
+
+        <article class="comment">
+          <p class="author">John Doe</p>
+          <p class="date">Posted on May 1, 2024</p>
+          <p>This is a great article! I learned a lot from it. Thanks for sharing your insights.</p>
+        </article>
+
+        <article class="comment">
+          <p class="author">Jane Smith</p>
+          <p class="date">Posted on May 2, 2024</p>
+          <p>I have a question about one of the points you made. Could you elaborate more on...</p>
+        </article>
+
+        <aside>
+          <p>Comments are moderated and may take up to 24 hours to appear.</p>
+        </aside>
+
+        <article class="comment-form">
+          <h3>Leave a Comment</h3>
+          <form action="javascript:">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" required></textarea>
+
+            <button type="submit">Submit Comment</button>
+          </form>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

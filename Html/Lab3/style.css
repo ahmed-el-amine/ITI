@@ -1,0 +1,170 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 1rem;
+}
+
+nav {
+  background-color: #333;
+  padding: 0.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+main {
+  padding: 1rem;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.profile-card {
+  width: 300px;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.profile-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.profile-card button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.profile-card button:hover {
+  background-color: #45a049;
+}
+
+.menu-bar {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  text-align: center;
+}
+
+.menu-item {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+.menu-item:hover {
+  background-color: #45a049;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  margin: 1rem;
+  text-align: center;
+}
+
+.gallery-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, serif;
+  letter-spacing: 1px;
+}
+
+p {
+  line-height: 1.8;
+}
+
+.card {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  margin: 5rem 0px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  color: #333;
+}
+
+footer p {
+  color: #ffffff;
+}
+
+ul li:first-child {
+  color: #4caf50;
+}
+
+a:hover {
+  color: #45a049;
+}
