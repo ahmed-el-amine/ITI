@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const username = window.prompt("Please Enter Your Username");
+
+      const userGrades = window.prompt("Please Enter Grades");
+
+      const numbersArray = userGrades.split(",").map((x) => parseInt(x));
+
+      console.log(`Welcome Mr ${username}`);
+
+      console.table(numbersArray);
+
+      console.log("Avg", numbersArray.reduce((v, next) => v + next, 0) / numbersArray.length);
+    </script>
+  </body>
+</html>
