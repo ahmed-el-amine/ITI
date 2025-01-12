@@ -1,0 +1,25 @@
+<script>
+  var vowels = ["a", "e", "i", "o", "u"];
+
+  function calculateTheNumberOfVowels(string) {
+    if (!string) throw Error("Please Provide a string");
+
+    var count = {};
+
+    string = string.toString().split("");
+
+    string.map(function (letter) {
+      var isExist = vowels.find(function (vLetter) {
+        return letter == vLetter;
+      });
+
+      if (isExist) {
+        if (count[letter]) count[letter]++;
+        else count[letter] = 1;
+      }
+    });
+    return count;
+  }
+
+  console.log(calculateTheNumberOfVowels("asdeasdaoqqq"));
+</script>

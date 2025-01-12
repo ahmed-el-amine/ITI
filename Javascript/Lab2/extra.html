@@ -1,0 +1,17 @@
+<script>
+  function calcDateofBirth(date) {
+    if (!date || new Date(date) == "Invalid Date") throw Error("Please Provide A Valid Date");
+    var birthDate = new Date(date);
+    if (birthDate > new Date()) throw Error("Please Provide A Valid Date");
+
+    var today = new Date();
+    var age = today.getFullYear() - birthDate.getFullYear();
+
+    return age;
+  }
+
+  //   console.log(calcDateofBirth("19"));
+  //   console.log(calcDateofBirth("1999"));
+  //   console.log(calcDateofBirth("1999-02-02"));
+  console.log(calcDateofBirth("1999-02"));
+</script>

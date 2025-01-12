@@ -1,0 +1,34 @@
+<script src="./utils/isValidInt.js"></script>
+
+<script>
+  function calculateTheSum(num) {
+    // validation
+    // check if valid number
+    var validNum = isValidInt(num);
+
+    if (!validNum.status || validNum.value <= 0) {
+      throw Error("Please Provide a valid number and start from 1");
+    }
+
+    // num = Math.abs(validNum.value);
+
+    return (
+      num
+        // convert to string
+        .toString()
+        // then remove all .
+        .replaceAll(".", "")
+        // then convert each element to array
+        .split("")
+        // reduce to calc values
+        .reduce(function (prevValue, nextValue) {
+          prevValue += parseInt(nextValue);
+          return prevValue;
+        }, 0)
+    );
+  }
+
+  console.log(calculateTheSum("123"));
+  console.log(calculateTheSum("123.6"));
+  console.log(calculateTheSum("-123.6"));
+</script>

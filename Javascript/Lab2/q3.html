@@ -1,0 +1,11 @@
+<script>
+  function calculate(string, char) {
+    if (!string || !char) throw Error("Please Provide a valid string and char");
+    var count = 0;
+    for (var idx = 0; idx < string.length; idx++) if (string[idx] == char) count++;
+
+    return count;
+  }
+
+  console.log(calculate("ahmed mohamed el amine", "a"));
+</script>

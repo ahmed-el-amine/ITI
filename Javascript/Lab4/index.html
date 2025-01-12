@@ -1,0 +1,82 @@
+<script>
+  Array.prototype.average = function () {
+    if (this.length === 0) throw new Error("Cannot calculate the average of an empty array.");
+
+    if (!this.every((num) => typeof num === "number")) throw new Error("Array must contain only numbers.");
+
+    return this.reduce((sum, num) => sum + num, 0) / this.length;
+  };
+
+  console.log([1, 2, 3, 4].average());
+</script>
+
+<script>
+  Object.prototype.toString = function () {
+    if (this.message) {
+      return this.message;
+    }
+    return "This is an object";
+  };
+
+  console.log(String({ message: "This is a message" }));
+  console.log(String({}));
+</script>
+
+<script>
+  var vehicleCount = 0;
+  var MAX_VEHICLES = 50;
+
+  function Vehicle(type, speed) {
+    if (vehicleCount >= MAX_VEHICLES) {
+      throw new Error("Vehicle limit reached");
+    }
+    this.type = type;
+    this.speed = speed;
+    vehicleCount++;
+  }
+
+  Vehicle.prototype.start = function () {
+    console.log(`${this.type} is starting`);
+  };
+
+  Vehicle.prototype.stop = function () {
+    console.log(`${this.type} is stopping`);
+  };
+
+  function Car(type, speed) {
+    Vehicle.call(this, type, speed);
+  }
+
+  Car.prototype = Object.create(Vehicle.prototype);
+  Car.prototype.constructor = Car;
+
+  Car.prototype.drive = function () {
+    console.log(`${this.type} is driving at ${this.speed} km/h`);
+  };
+
+  // Example usage
+  var car1 = new Car("Sedan", 100);
+  car1.start();
+  car1.drive();
+  car1.stop();
+
+  // -----------
+
+  function isCar1(obj) {
+    return obj instanceof Car;
+  }
+
+  function isCar2(obj) {
+    return Object.getPrototypeOf(obj) === Car.prototype;
+  }
+
+  // Example usage
+  var car = new Car("SUV", 120);
+  var vehicle = new Vehicle("Truck", 80);
+
+  console.log(isCar1(car));
+  console.log(isCar1(vehicle));
+
+  console.log(isCar2(car));
+  console.log(isCar2(vehicle));
+</script>

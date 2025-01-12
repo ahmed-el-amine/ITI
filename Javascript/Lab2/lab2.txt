@@ -1,0 +1,3 @@
+[1] Write a function to calculate the sum of digits in a number
+[2] Write a function to calculate the number of vowels in a string
+[3] Write a function to calculate the number of occurances of a character in a string
