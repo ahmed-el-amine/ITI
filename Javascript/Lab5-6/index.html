@@ -1,0 +1,110 @@
+<script>
+  class Vehicle {
+    static MAX_VEHICLES = 50;
+    static vehicleCount = 0;
+    constructor(type, speed) {
+      if (Vehicle.vehicleCount >= Vehicle.MAX_VEHICLES) {
+        throw new Error("Vehicle limit reached");
+      }
+      this.type = type;
+      this.speed = speed;
+      Vehicle.vehicleCount++;
+    }
+
+    start() {
+      console.log(`${this.type} is starting`);
+    }
+
+    stop() {
+      console.log(`${this.type} is stopping`);
+    }
+  }
+
+  class Car extends Vehicle {
+    constructor(type, speed) {
+      super(type, speed);
+    }
+
+    drive() {
+      console.log(`${this.type} is driving at ${this.speed} km/h`);
+    }
+  }
+
+  const car1 = new Car("Sedan", 100);
+  car1.start();
+  car1.drive();
+  car1.stop();
+</script>
+
+<table>
+  <thead>
+    <tr>
+      <th>UserName</th>
+      <th>Email</th>
+      <th>Company Name</th>
+      <th>Address Geo</th>
+      <th>Posts (Titles and Comments)</th>
+    </tr>
+  </thead>
+  <tbody id="displayData"></tbody>
+</table>
+
+<script>
+  async function main() {
+    try {
+      // first get all users
+      const usersResponse = await fetch("https://jsonplaceholder.typicode.com/users");
+      const users = await usersResponse.json();
+
+      // sec get all posts
+      const postsResponse = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const posts = await postsResponse.json();
+
+      // third get all comments
+      const commentsResponse = await fetch("https://jsonplaceholder.typicode.com/comments");
+      const comments = await commentsResponse.json();
+
+      // get table element
+      const tableBody = document.getElementById("displayData");
+
+      // loop throw all users
+      for (const user of users) {
+        // get all posts related to this user using user.id
+        const userPosts = posts.filter((post) => post.userId === user.id);
+        // loop throw all posts related to this user and get count of comments
+        const postsHTML = userPosts
+          .map((post) => {
+            // in each post get comment count using filter using post.id
+            const postComments = comments.filter((comment) => comment.postId === post.id);
+
+            return `
+              <li>
+                <strong>${post.title}</strong> - ${postComments.length} comments
+              </li>
+            `;
+          })
+          .join("");
+
+        const row = `
+            <tr>
+              <td>${user.username}</td>
+              <td>${user.email}</td>
+              <td>${user.company.name}</td>
+              <td>Lat: ${user.address.geo.lat}, Lng: ${user.address.geo.lng}</td>
+              <td>
+                <ol>
+                  ${postsHTML}
+                </ol>
+              </td>
+            </tr>
+          `;
+
+        tableBody.innerHTML += row;
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  main();
+</script>

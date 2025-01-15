@@ -3,6 +3,7 @@ const GameLevels = {
   medium: "متوسط",
   hard: "صعب",
 };
+Object.freeze(GameLevels);
 
 const GameState = {
   ready: "ready",
@@ -10,10 +11,13 @@ const GameState = {
   finished: "finished",
 };
 
+Object.freeze(GameState);
+
 const Win_Lose_State = {
   win: "win",
   lose: "lose",
 };
+Object.freeze(Win_Lose_State);
 
 const HangmanGame = {
   level: GameLevels.easy,
@@ -115,7 +119,7 @@ const HangmanGame = {
   },
 
   checkWin: function () {
-    if (HangmanGame.word == HangmanGame.correctGuess.join("")) {
+    if (HangmanGame.word === HangmanGame.correctGuess.join("")) {
       return HangmanGame.endGame(Win_Lose_State.win);
     }
     if (HangmanGame.guessCount <= 0) {
