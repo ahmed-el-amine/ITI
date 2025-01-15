@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman</title>
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="game-settings">
+      <div>
+        <label for="level">
+          مستوي الصعوبة
+          <br />
+          <select id="level">
+            <option value="سهل">سهل</option>
+            <option value="متوسط">متوسط</option>
+            <option value="صعب">صعب</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <label for="topics">
+          الموضوع
+          <br />
+          <select id="topics">
+            <option value="فاكهة">فاكهة</option>
+            <option value="حيوان">حيوان</option>
+            <option value="طيور">طيور</option>
+          </select>
+        </label>
+      </div>
+
+      <div><button class="btn btn-start" id="startTheGameBTN">ابدا اللعبة</button></div>
+    </div>
+    <div class="container hide" id="game-board">
+      <div class="timer">الوقت المتبقي: <span id="timer-count">60</span> ثانية</div>
+      <div class="container-hint">
+        <br />
+        <div class="hint-border">
+          <div class="hint-text">التلميح:</div>
+          &nbsp; [
+          <div class="hint-value"></div>
+          ] &nbsp;-
+          <div class="hint-text">المستوي:</div>
+          &nbsp; [
+          <div class="hint-level-value">سهل</div>
+          ] &nbsp;-
+          <div class="hint-text">عدد المحاولات:</div>
+          &nbsp; [
+          <div class="hint-count-value">3</div>
+          ]
+        </div>
+      </div>
+
+      <div class="container-input-result"></div>
+
+      <div class="note-text"></div>
+
+      <div class="container-input-keys"></div>
+
+      <button class="btn btn-start" id="restartTheGameBTN">اعادة المحاولة</button>
+    </div>
+
+    <script src="./assets/scripts/main.js" type="module"></script>
+  </body>
+</html>
