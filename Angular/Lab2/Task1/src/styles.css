@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-wrapper {
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.search-container input,
+button {
+  padding: 10px;
+}
+
+.card-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-wrapper .card {
+  width: 300px;
+  min-height: 250px;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #ebebeb;
+}
+
+.card-wrapper .card .chip {
+  margin-top: 10px;
+  border-radius: 10%;
+  padding: 10px;
+  min-width: 100px;
+  text-align: center;
+}
+
+.card-wrapper .card img {
+  border-radius: 50%;
+}
+
+.card-wrapper .card .moderator {
+  background-color: yellow;
+}
+
+.card-wrapper .card .user {
+  background-color: green;
+}
+
+.card-wrapper .card .admin {
+  background-color: red;
+}

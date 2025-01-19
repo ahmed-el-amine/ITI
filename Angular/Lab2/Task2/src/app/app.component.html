@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>To-Do List</h1>
+
+  <app-input (newTaskEvent)="addTask($event)"></app-input>
+
+  <app-items-list
+    [items]="tasks"
+    (removeTaskEvent)="removeTask($event)"
+  ></app-items-list>
+</div>

@@ -1,0 +1,10 @@
+<div class="item">
+  <input type="checkbox" [(ngModel)]="item.isCompleted" />
+  @if (item.isCompleted) {
+  <del>{{ item.title }}</del>
+  } @else {
+  {{ item.title }}
+  }
+
+  <button (click)="remove()">Delete</button>
+</div>

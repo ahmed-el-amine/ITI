@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <h2>Shopping Cart</h2>
+  <div class="row" *ngIf="cartItems.length > 0">
+    <div class="col-md-8">
+      <div class="card mb-3" *ngFor="let item of cartItems">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <img
+                [src]="item.thumbnail"
+                class="img-fluid"
+                alt="{{ item.title }}"
+              />
+            </div>
+            <div class="col-md-9">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">Price: ${{ item.price }}</p>
+              <div class="d-flex align-items-center mb-3">
+                <label class="me-2">Quantity:</label>
+                <select
+                  class="form-select w-auto"
+                  [(ngModel)]="item.quantity"
+                  (change)="updateQuantity(item.id, item.quantity)"
+                >
+                  <option
+                    [value]="n"
+                    *ngFor="let n of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                <button
+                  (click)="removeFromCart(item.id)"
+                  class="btn btn-danger ms-3"
+                >
+                  Remove
+                </button>
+              </div>
+              <p class="card-text">
+                <strong
+                  >Subtotal: ${{
+                    item.price * item.quantity | number : "1.2-2"
+                  }}</strong
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Order Summary</h5>
+          <p class="card-text">Total Items: {{ getTotalItems() }}</p>
+          <p class="card-text">
+            <strong>Total: ${{ getTotalPrice() | number : "1.2-2" }}</strong>
+          </p>
+          <button class="btn btn-primary w-100" (click)="checkout()">
+            Checkout
+          </button>
+          <button
+            class="btn btn-outline-danger w-100 mt-2"
+            (click)="clearCart()"
+          >
+            Clear Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center" *ngIf="cartItems.length === 0">
+    <p class="lead">Your cart is empty</p>
+    <a routerLink="/" class="btn btn-primary">Continue Shopping</a>
+  </div>
+</div>

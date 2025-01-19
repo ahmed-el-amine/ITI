@@ -1,0 +1,15 @@
+<li class="progress-item">
+  <div class="label-wrapper">
+    <p>{{ skill?.name }}</p>
+
+    <span class="span">{{ skill?.percentage }} %</span>
+  </div>
+
+  <div class="progress">
+    <div
+      class="progress-fill"
+      [style.width.%]="skill?.percentage"
+      [style.background-color]="skill?.color"
+    ></div>
+  </div>
+</li>

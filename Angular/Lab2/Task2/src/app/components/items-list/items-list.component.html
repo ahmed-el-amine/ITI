@@ -1,0 +1,5 @@
+<div>
+  @for (item of items; track $index) {
+  <app-items [item]="item" (removeEvent)="removeTask($event)"></app-items>
+  }
+</div>

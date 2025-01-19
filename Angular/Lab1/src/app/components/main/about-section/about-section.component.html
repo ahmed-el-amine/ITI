@@ -1,0 +1,109 @@
+<section class="section about" aria-label="about">
+  <div class="container">
+    <div class="wrapper">
+      <div data-reveal="left">
+        <h2 class="h2 section-title">What I Do?</h2>
+
+        <p class="section-text">
+          I design and develop applications and websites. I have sufficient
+          experience to work with all existing platforms and available tools.
+        </p>
+      </div>
+
+      <ul class="progress-list" data-reveal="right">
+        @for (item of skills; track $index) {
+        <app-progress [skill]="item"></app-progress>
+        }
+      </ul>
+    </div>
+
+    <ul class="grid-list">
+      <li data-reveal="bottom">
+        <div class="about-card">
+          <div class="card-icon">
+            <img
+              src="./images/icon-1.svg"
+              width="52"
+              height="52"
+              loading="lazy"
+              alt="web design icon"
+            />
+          </div>
+
+          <h3 class="h4 card-title">Web Design</h3>
+
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            quam laborum dolorum magni repellendus, excepturi debitis suscipit
+            atque dolores dolore?
+          </p>
+        </div>
+      </li>
+
+      <li data-reveal="bottom" data-reveal-delay="0.25s">
+        <div class="about-card">
+          <div class="card-icon">
+            <img
+              src="./images/icon-2.svg"
+              width="52"
+              height="52"
+              loading="lazy"
+              alt="mobile design icon"
+            />
+          </div>
+
+          <h3 class="h4 card-title">Mobile Design</h3>
+
+          <p class="card-text">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
+            voluptates consequatur non, inventore dolorem laboriosam cupiditate
+            beatae fuga eveniet eligendi.
+          </p>
+        </div>
+      </li>
+
+      <li data-reveal="bottom" data-reveal-delay="0.5s">
+        <div class="about-card">
+          <div class="card-icon">
+            <img
+              src="./images/icon-3.svg"
+              width="52"
+              height="52"
+              loading="lazy"
+              alt="web development icon"
+            />
+          </div>
+
+          <h3 class="h4 card-title">Development</h3>
+
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam est
+            animi in vitae, ipsa sed similique earum distinctio a perferendis?
+          </p>
+        </div>
+      </li>
+
+      <li data-reveal="bottom" data-reveal-delay="0.75s">
+        <div class="about-card">
+          <div class="card-icon">
+            <img
+              src="./images/icon-4.svg"
+              width="52"
+              height="52"
+              loading="lazy"
+              alt="web seo icon"
+            />
+          </div>
+
+          <h3 class="h4 card-title">SEO</h3>
+
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic alias
+            dolore obcaecati repellendus sint consequuntur repellat et, dolorum
+            quos exercitationem.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+<div class="app-wrapper">
+  <div class="search-container">
+    <input placeholder="Search" type="text" (input)="searchOnChange($event)" />
+  </div>
+
+  <div class="card-wrapper">
+    @for (user of users; track $index) {
+    <app-card [user]="user"> </app-card>
+    }
+  </div>
+</div>
