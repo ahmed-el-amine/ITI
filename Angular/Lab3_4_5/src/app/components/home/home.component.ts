@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../interfaces/product.interface';
 
 @Component({
-  selector: 'app-product-detail',
-  imports: [CommonModule],
-  templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.css',
+  selector: 'app-home',
+  imports: [CommonModule, RouterLink],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
 })
-export class ProductDetailComponent implements OnInit {
-  product?: Product;
+export class HomeComponent implements OnInit {
+  products: Product[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService
   ) {}
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.productService.getProductById(id);
+    this.productService
+      .getProducts()
+      .subscribe((products) => (this.products = products));
   }
 
   addToCart(product: Product) {

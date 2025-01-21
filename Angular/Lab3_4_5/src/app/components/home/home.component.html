@@ -1,14 +1,23 @@
 <div class="container mt-4">
   <h2>Our Products</h2>
   <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let product of products">
+    @for (product of products; track product.id) {
+    <div class="col-md-4 mb-4">
       <div class="card">
         <img
           [src]="product.thumbnail"
           class="card-img-top"
-          alt="{{ product.title }}"
+          [alt]="product.title"
         />
+
         <div class="card-body">
+          @if (product.stock) {
+          <span class="bg-primary badge badge-primary"
+            >In Stock {{ product.stock }}</span
+          >
+          } @else {
+          <div class="bg-danger badge badge-primary">Out of Stock</div>
+          }
           <h5 class="card-title">{{ product.title }}</h5>
           <p class="card-text">
             {{ product.description | slice : 0 : 100 }}...
@@ -28,5 +37,6 @@
         </div>
       </div>
     </div>
+    }
   </div>
 </div>

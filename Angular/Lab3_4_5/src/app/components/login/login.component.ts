@@ -25,8 +25,6 @@ export class LoginComponent {
 
     if (form.valid) {
       console.log('Form submitted successfully', this.formData);
-      // Here you would typically make an API call to authenticate the user
-      // For demonstration, we'll just show a success message
       alert('Login successful!');
     } else {
       this.formError = 'Please fix the errors in the form before submitting.';

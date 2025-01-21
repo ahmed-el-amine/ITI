@@ -6,7 +6,6 @@
           <h3 class="card-title text-center">Login</h3>
 
           <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-            <!-- Email Field -->
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input
@@ -22,20 +21,18 @@
                   email.invalid && (email.dirty || email.touched || isSubmitted)
                 "
               />
-              <div
-                class="invalid-feedback"
-                *ngIf="
-                  email.invalid && (email.dirty || email.touched || isSubmitted)
-                "
-              >
-                <div *ngIf="email.errors?.['required']">Email is required</div>
-                <div *ngIf="email.errors?.['pattern']">
-                  Please enter a valid email address
-                </div>
+              @if (email.invalid && (email.dirty || email.touched ||
+              isSubmitted)) {
+              <div class="invalid-feedback">
+                @if (email.errors?.['required']) {
+                <div>Email is required</div>
+                } @if (email.errors?.['pattern']) {
+                <div>Please enter a valid email address</div>
+                }
               </div>
+              }
             </div>
 
-            <!-- Password Field -->
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
@@ -51,23 +48,21 @@
                   (password.dirty || password.touched || isSubmitted)
                 "
               />
-              <div
-                class="invalid-feedback"
-                *ngIf="
-                  password.invalid &&
-                  (password.dirty || password.touched || isSubmitted)
-                "
-              >
-                <div *ngIf="password.errors?.['required']">
-                  Password is required
-                </div>
+              @if (password.invalid && (password.dirty || password.touched ||
+              isSubmitted)) {
+              <div class="invalid-feedback">
+                @if (password.errors?.['required']) {
+                <div>Password is required</div>
+                }
               </div>
+              }
             </div>
 
-            <!-- Form Level Error Message -->
-            <div class="alert alert-danger" *ngIf="formError" role="alert">
+            @if (formError) {
+            <div class="alert alert-danger" role="alert">
               {{ formError }}
             </div>
+            }
 
             <button type="submit" class="btn btn-primary w-100">Login</button>
           </form>

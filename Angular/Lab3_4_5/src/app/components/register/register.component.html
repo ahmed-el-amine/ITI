@@ -13,12 +13,10 @@
                 id="name"
                 formControlName="name"
               />
-              <div
-                *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched"
-                class="text-danger"
-              >
-                Name is required.
-              </div>
+              @if (registerForm.get('name')?.errors?.['required'] &&
+              registerForm.get('name')?.touched) {
+              <div class="text-danger">Name is required.</div>
+              }
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
@@ -28,18 +26,13 @@
                 id="email"
                 formControlName="email"
               />
-              <div
-                *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
-                class="text-danger"
-              >
-                Email is required.
-              </div>
-              <div
-                *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
-                class="text-danger"
-              >
-                Invalid email format.
-              </div>
+              @if (registerForm.get('email')?.errors?.['required'] &&
+              registerForm.get('email')?.touched) {
+              <div class="text-danger">Email is required.</div>
+              } @if (registerForm.get('email')?.errors?.['email'] &&
+              registerForm.get('email')?.touched) {
+              <div class="text-danger">Invalid email format.</div>
+              }
             </div>
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
@@ -49,18 +42,13 @@
                 id="username"
                 formControlName="username"
               />
-              <div
-                *ngIf="registerForm.get('username')?.errors?.['required'] && registerForm.get('username')?.touched"
-                class="text-danger"
-              >
-                Username is required.
-              </div>
-              <div
-                *ngIf="registerForm.get('username')?.errors?.['noSpaces'] && registerForm.get('username')?.touched"
-                class="text-danger"
-              >
-                Username should not contain spaces.
-              </div>
+              @if (registerForm.get('username')?.errors?.['required'] &&
+              registerForm.get('username')?.touched) {
+              <div class="text-danger">Username is required.</div>
+              } @if (registerForm.get('username')?.errors?.['noSpaces'] &&
+              registerForm.get('username')?.touched) {
+              <div class="text-danger">Username should not contain spaces.</div>
+              }
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
@@ -70,25 +58,21 @@
                 id="password"
                 formControlName="password"
               />
-              <div
-                *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
-                class="text-danger"
-              >
-                Password is required.
-              </div>
-              <div
-                *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched"
-                class="text-danger"
-              >
+              @if (registerForm.get('password')?.errors?.['required'] &&
+              registerForm.get('password')?.touched) {
+              <div class="text-danger">Password is required.</div>
+              } @if (registerForm.get('password')?.errors?.['minlength'] &&
+              registerForm.get('password')?.touched) {
+              <div class="text-danger">
                 Password must be at least 8 characters long.
               </div>
-              <div
-                *ngIf="registerForm.get('password')?.errors?.['pattern'] && registerForm.get('password')?.touched"
-                class="text-danger"
-              >
+              } @if (registerForm.get('password')?.errors?.['pattern'] &&
+              registerForm.get('password')?.touched) {
+              <div class="text-danger">
                 Password must contain at least one lowercase letter, one
                 uppercase letter, one digit, and one special character.
               </div>
+              }
             </div>
             <div class="mb-3">
               <label for="confirmPassword" class="form-label"
@@ -100,18 +84,13 @@
                 id="confirmPassword"
                 formControlName="confirmPassword"
               />
-              <div
-                *ngIf="registerForm.get('confirmPassword')?.errors?.['required'] && registerForm.get('confirmPassword')?.touched"
-                class="text-danger"
-              >
-                Confirm Password is required.
-              </div>
-              <div
-                *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched"
-                class="text-danger"
-              >
-                Passwords do not match.
-              </div>
+              @if (registerForm.get('confirmPassword')?.errors?.['required'] &&
+              registerForm.get('confirmPassword')?.touched) {
+              <div class="text-danger">Confirm Password is required.</div>
+              } @if (registerForm.errors?.['passwordMismatch'] &&
+              registerForm.get('confirmPassword')?.touched) {
+              <div class="text-danger">Passwords do not match.</div>
+              }
             </div>
             <button
               type="submit"

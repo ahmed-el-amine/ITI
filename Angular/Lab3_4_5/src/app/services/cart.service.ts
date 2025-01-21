@@ -28,17 +28,14 @@ export class CartService {
     let updatedItems: CartItem[];
 
     if (existingItem) {
-      // If item exists, increase quantity
-      updatedItems = currentItems.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
+      this.updateQuantity(product.id, existingItem.quantity + 1);
     } else {
       // If item doesn't exist, add it with quantity 1
       updatedItems = [...currentItems, { ...product, quantity: 1 }];
-    }
 
-    this.cartItems.next(updatedItems);
-    this.saveToLocalStorage(updatedItems);
+      this.cartItems.next(updatedItems);
+      this.saveToLocalStorage(updatedItems);
+    }
   }
 
   removeFromCart(productId: number) {
@@ -50,9 +47,15 @@ export class CartService {
   }
 
   updateQuantity(productId: number, quantity: number) {
-    const updatedItems = this.cartItems.value.map((item) =>
-      item.id === productId ? { ...item, quantity } : item
-    );
+    const updatedItems = this.cartItems.value.map((item) => {
+      if (item.id === productId) {
+        if (quantity <= item.stock) {
+          return { ...item, quantity };
+        }
+        alert("Quantity can't be greater than stock");
+      }
+      return item;
+    });
     this.cartItems.next(updatedItems);
     this.saveToLocalStorage(updatedItems);
   }

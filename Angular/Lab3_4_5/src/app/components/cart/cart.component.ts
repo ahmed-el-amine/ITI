@@ -22,6 +22,8 @@ export class CartComponent implements OnInit {
   }
 
   updateQuantity(productId: number, quantity: number) {
+    if (quantity <= 0) return;
+
     this.cartService.updateQuantity(productId, quantity);
   }
 
