@@ -50,12 +50,42 @@ const employeesSchema = new mongoose.Schema(
   }
 );
 
-employeesSchema.pre("save", async function (next) {
+async function hashPassword(next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();
-});
+}
+
+async function hashPasswordForQuery(next) {
+  const update = this.getUpdate();
+  if (update && update.password) {
+    update.password = await bcrypt.hash(update.password, 10);
+  }
+  next();
+}
+
+async function hashPasswordForInsertMany(next, docs) {
+  if (Array.isArray(docs)) {
+    for (const doc of docs) {
+      if (doc.password) {
+        doc.password = await bcrypt.hash(doc.password, 10);
+      }
+    }
+  }
+  next();
+}
+
+// Apply to document-level operations
+employeesSchema.pre("save", hashPassword);
+
+// Apply to query-level operations
+employeesSchema.pre("updateOne", hashPasswordForQuery);
+employeesSchema.pre("findOneAndUpdate", hashPasswordForQuery);
+employeesSchema.pre("updateMany", hashPasswordForQuery);
+
+// Apply to bulk inserts
+employeesSchema.pre("insertMany", hashPasswordForInsertMany);
 
 employeesSchema.virtual("age").get(function () {
   if (!this.dateOfBirth) return null;
