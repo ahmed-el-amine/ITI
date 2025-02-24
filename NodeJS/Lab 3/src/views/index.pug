@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title employees List
+    link(rel="stylesheet", href="/styles.css")
+  body
+    .container
+      h1 employees List
+      each employee in employees
+        .employee-card
+          h2= employee.name
+          ul
+            li
+              strong Email: 
+              |  #{employee.email}
+            li
+              strong Salary: 
+              |  $#{employee.salary.toLocaleString()}
+            li
+              strong Level: 
+              |  #{employee.level}
+            li
+              strong Experience: 
+              |  #{employee.yearsOfExperience} years

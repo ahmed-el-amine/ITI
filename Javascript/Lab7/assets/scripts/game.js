@@ -183,6 +183,7 @@ const HangmanGame = {
   },
 
   endGame: function (status) {
+    HangmanGame.gameTimer.stop();
     HangmanGame.gameState = GameState.finished;
     if (status == WinLoseState.win) {
       HangmanGame.showMessage(status);

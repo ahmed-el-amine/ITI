@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Leaves</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      h2 {
+        text-align: center;
+      }
+      .container {
+        max-width: 500px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      button {
+        background: #28a745;
+        color: white;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        margin-top: 15px;
+      }
+      button:hover {
+        background: #218838;
+      }
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        background: white;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        background: #007bff;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Employee Leave Records</h2>
+      <label for="employeeID">Employee ID:</label>
+      <input type="text" id="employeeID" placeholder="Enter Employee ID" />
+
+      <label for="status">Status:</label>
+      <select id="status">
+        <option value="inprogress">In Progress</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+
+      <button onclick="fetchLeaves()">Fetch Leaves</button>
+
+      <table id="leaveTable">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function fetchLeaves() {
+        const employeeID = document.getElementById("employeeID").value.trim();
+        const status = document.getElementById("status").value;
+
+        if (!employeeID) {
+          alert("Please enter an Employee ID");
+          return;
+        }
+
+        fetch("http://localhost:3000/api/v1/leave?limit=10&skip=0")
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.error) {
+              alert("Error fetching data");
+              return;
+            }
+
+            const filteredLeaves = data.data.filter((leave) => leave.employeeID === employeeID && leave.status === status).slice(0, 10);
+
+            const tableBody = document.querySelector("#leaveTable tbody");
+            tableBody.innerHTML = "";
+
+            if (filteredLeaves.length === 0) {
+              tableBody.innerHTML = "<tr><td colspan='2'>No records found</td></tr>";
+              return;
+            }
+
+            filteredLeaves.forEach((leave) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `<td>${leave.employeeID}</td><td>${leave.status}</td>`;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to fetch data");
+          });
+      }
+    </script>
+  </body>
+</html>

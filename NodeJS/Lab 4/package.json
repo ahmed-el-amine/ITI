@@ -1,0 +1,32 @@
+{
+  "name": "lab_4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node --env-file=.env src/main.js",
+    "dev": "cross-env NODE_ENV=development node --env-file=.env --watch src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.0.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.1",
+    "winston": "^3.17.0",
+    "zod": "^3.24.2"
+  }
+}
