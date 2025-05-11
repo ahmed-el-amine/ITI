@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ author.get_full_name }} - Author Profile{% endblock %}
+
+{% block content %}
+    <div class="author-profile">
+        <h2>{{ author.get_full_name }}</h2>
+        
+        {% if author.image %}
+            <img src="{{ author.image.url }}" alt="{{ author.get_full_name }}" class="author-image">
+        {% endif %}
+        
+        <div class="author-details">
+            <p><strong>Email:</strong> {{ author.email }}</p>
+            <p><strong>Phone:</strong> {{ author.phone_number }}</p>
+        </div>
+        
+        <div class="author-posts">
+            <h3>Posts ({{ post_count }})</h3>
+            
+            {% if posts %}
+                <ul class="posts-list">
+                    {% for post in posts %}
+                        <li>
+                            <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+                            <span class="post-date">({{ post.created_at|date:"F j, Y" }})</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>This author hasn't written any posts yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <a href="{% url 'post_list' %}" class="back-link">← Back to all posts</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }} - Django Blog{% endblock %}
+
+{% block content %}
+    <article class="post-detail">
+        <h2>{{ post.title }}</h2>
+        <p class="post-date">Posted on {{ post.created_at|date:"F j, Y" }} by 
+            <a href="{% url 'author_profile' post.author.pk %}" class="author-link">{{ post.author.get_full_name }}</a>
+        </p>
+        
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+        
+        <div class="post-content">
+            {{ post.content|linebreaks }}
+        </div>
+    </article>
+    
+    <section class="comments-section">
+        <h3>Comments ({{ comments|length }})</h3>
+        
+        {% if comments %}
+            <div class="comments-list">
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p class="comment-meta">{{ comment.posted_by }} on {{ comment.created_at|date:"F j, Y" }}</p>
+                        <p class="comment-content">{{ comment.content }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No comments yet.</p>
+        {% endif %}
+    </section>
+    
+    <a href="{% url 'post_list' %}" class="back-link">← Back to all posts</a>
+{% endblock %}

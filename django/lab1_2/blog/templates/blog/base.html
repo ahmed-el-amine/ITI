@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Django Blog{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .post {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .post-title {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 1.4em;
+        }
+        .post-title:hover {
+            text-decoration: underline;
+        }
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+        .post-content {
+            margin-top: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .author-link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .author-link:hover {
+            text-decoration: underline;
+        }
+        .comments-section {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .comment {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #eee;
+        }
+        .comment-meta {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .author-image {
+            max-width: 200px;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 50%;
+        }
+        .author-details {
+            margin: 20px 0;
+        }
+        .author-posts {
+            margin-top: 30px;
+        }
+        .posts-list {
+            padding-left: 20px;
+        }
+        .posts-list li {
+            margin-bottom: 10px;
+        }
+        .post-date {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Django Blog</h1>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
