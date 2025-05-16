@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <style>
+      .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .result-container {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container mt-4">
+      <div v-if="showForm" class="form-container">
+        <h2 class="text-center mb-4">Post title: {{ title }}</h2>
+
+        <div class="mb-3">
+          <input v-model="title" type="text" class="form-control" placeholder="IP Address" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Category:</label>
+          <div class="btn-group w-100">
+            <button
+              v-for="cat in postData.category"
+              :key="cat"
+              @click="selectedCategory = cat"
+              :class="['btn', selectedCategory === cat ? 'btn-primary' : 'btn-outline-primary']"
+            >
+              {{ cat }}
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Edition:</label>
+          <select v-model="selectedEdition" class="form-select">
+            <option v-for="series in postData.series" :key="series" :value="series">{{ series }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Social Networks:</label>
+          <div class="d-flex gap-2">
+            <div v-for="network in postData.socialnetworks" :key="network" class="form-check">
+              <input type="checkbox" :id="network" :value="network" v-model="selectedNetworks" class="form-check-input" />
+              <label :for="network" class="form-check-label">{{ network }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" v-model="publishNow" class="form-check-input" id="publish" />
+          <label class="form-check-label" for="publish">Publish now</label>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button @click="submitForm" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+
+      <div v-else class="result-container">
+        <h3>Submitted Data:</h3>
+        <p><strong>Title:</strong> {{ title }}</p>
+        <p><strong>Category:</strong> {{ selectedCategory }}</p>
+        <p><strong>Edition:</strong> {{ selectedEdition }}</p>
+        <p><strong>Networks:</strong> {{ selectedNetworks.join(', ') }}</p>
+        <p><strong>Publish Now:</strong> {{ publishNow }}</p>
+        <button @click="showForm = true" class="btn btn-secondary">Back</button>
+      </div>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            postData: {
+              category: ["design", "network", "database", "development"],
+              series: ["first", "second", "third"],
+              socialnetworks: ["facebook", "X", "youtube", "instagram"],
+            },
+            title: "IP Address",
+            selectedCategory: "network",
+            selectedEdition: "second",
+            selectedNetworks: ["facebook", "X"],
+            publishNow: true,
+            showForm: true,
+          };
+        },
+        methods: {
+          submitForm() {
+            this.showForm = false;
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js Book List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <style>
+      .less {
+        background-color: #b80a1841;
+      }
+      .more {
+        background-color: #09c43554;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container mt-4">
+      <h2 class="text-center">Book List</h2>
+
+      <ul class="list-group mb-4">
+        <li v-for="book in books" :key="book.isbn" :title="book.author" class="list-group-item">{{ book.name }}</li>
+      </ul>
+
+      <div class="row">
+        <div class="col-md-4 mb-4" v-for="book in books" :key="book.isbn">
+          <div class="card p-3" :class="book.pages < 50 ? 'less' : 'more'">
+            <img :src="book.image" class="card-img-top" alt="Book Image" />
+            <div class="card-body">
+              <h5 class="card-title">{{ book.name }}</h5>
+              <p class="card-text">
+                <strong>Category:</strong> {{ book.category }}<br />
+                <strong>Author:</strong> {{ book.author }}<br />
+                <strong>Pages:</strong> {{ book.pages }}<br />
+                <strong>Price:</strong> {{ formatPrice(book.price) }}
+              </p>
+              <button class="btn btn-primary w-100" @click="addToWishlist(book)">Add To List</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-4">Wishlist</h3>
+      <table class="table table-bordered" v-if="wishlist.length">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(book, index) in wishlist" :key="book.isbn">
+            <td>{{ book.name }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ formatPrice(book.price) }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" @click="removeFromWishlist(book)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            books: [
+              {
+                isbn: "12345",
+                name: "Vue Mastery",
+                category: "Programming",
+                image: "https://placehold.co/150",
+                pages: 120,
+                author: "Evan You",
+                price: 150,
+              },
+              {
+                isbn: "67890",
+                name: "JS Deep Dive",
+                category: "JavaScript",
+                image: "https://placehold.co/150",
+                pages: 40,
+                author: "Kyle Simpson",
+                price: 200,
+              },
+              {
+                isbn: "11223",
+                name: "Node.js Guide",
+                category: "Backend",
+                image: "https://placehold.co/150",
+                pages: 75,
+                author: "Ryan Dahl",
+                price: 180,
+              },
+            ],
+            wishlist: [],
+          };
+        },
+        methods: {
+          addToWishlist(book) {
+            if (this.wishlist.find((b) => b.isbn === book.isbn)) return;
+            this.wishlist.push(book);
+          },
+          removeFromWishlist(book) {
+            this.wishlist = this.wishlist.filter((b) => b.isbn != book.isbn);
+          },
+          formatPrice(price) {
+            return new Intl.NumberFormat("en-SA", { style: "currency", currency: "SAR" }).format(price);
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
